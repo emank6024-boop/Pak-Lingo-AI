@@ -1,0 +1,94 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Registered user profile information and account state",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "name": {
+          "type": "string",
+          "description": "User display name"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Profile picture URL"
+        },
+        "provider": {
+          "type": "string",
+          "description": "Authentication provider (google or email)"
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "description": "Whether email has been verified"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last profile update timestamp"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Account creation ISO timestamp"
+        }
+      },
+      "required": ["email", "name", "provider"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Chat session transcripts and history",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner user ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "Conversation topic"
+        },
+        "category": {
+          "type": "string",
+          "description": "Domain category"
+        },
+        "language": {
+          "type": "string",
+          "description": "Conversation language"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Short summary or snippet preview"
+        },
+        "type": {
+          "type": "string",
+          "description": "Activity type: chat, translate, document, activity"
+        },
+        "module": {
+          "type": "string",
+          "description": "Source module name"
+        },
+        "targetPage": {
+          "type": "string",
+          "description": "Target application page ID"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["userId", "title"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User accounts collection indexed by auth UID"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "User conversations and transcripts"
+    }
+  }
+}

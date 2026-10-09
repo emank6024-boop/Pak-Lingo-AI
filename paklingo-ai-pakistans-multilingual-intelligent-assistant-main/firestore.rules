@@ -1,0 +1,84 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Pillar 1 & 4: Global Safety Net - Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Common Security Helper Functions
+    function isSignedIn() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Pillar 2: Validation Blueprints
+    function isValidUserProfile(data) {
+      return data.email is string && data.email.size() > 3 && data.email.size() <= 254 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 150 &&
+             data.provider is string && (data.provider == 'google' || data.provider == 'email') &&
+             (!('avatar' in data) || (data.avatar is string && data.avatar.size() <= 2000)) &&
+             (!('emailVerified' in data) || data.emailVerified is bool) &&
+             (!('updatedAt' in data) || (data.updatedAt is string && data.updatedAt.size() <= 64)) &&
+             (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 64));
+    }
+
+    function isValidConversation(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.title is string && data.title.size() > 0 && data.title.size() <= 500 &&
+             data.category is string && data.category.size() <= 100 &&
+             data.language is string && data.language.size() <= 50 &&
+             (!('subtitle' in data) || (data.subtitle is string && data.subtitle.size() <= 1000)) &&
+             (!('type' in data) || (data.type is string && data.type.size() <= 50)) &&
+             (!('module' in data) || (data.module is string && data.module.size() <= 100)) &&
+             (!('targetPage' in data) || (data.targetPage is string && data.targetPage.size() <= 50)) &&
+             (!('createdAt' in data) || (data.createdAt is string && data.createdAt.size() <= 64));
+    }
+
+    // /users/{userId} collection
+    match /users/{userId} {
+      allow get: if isOwner(userId) && isValidId(userId);
+      allow list: if false; // PII Protection: Never allow listing users
+      allow create: if isOwner(userId) && isValidId(userId) && isValidUserProfile(incoming());
+      allow update: if isOwner(userId) && isValidId(userId) && isValidUserProfile(incoming()) &&
+                       incoming().email == existing().email;
+      allow delete: if false; // User accounts cannot be arbitrarily deleted from client
+    }
+
+    // /conversations/{conversationId} collection
+    match /conversations/{conversationId} {
+      // Single get allowed only for owner
+      allow get: if isSignedIn() && isValidId(conversationId) && existing().userId == request.auth.uid;
+      // Secure List Query: Enforce resource.data.userId == request.auth.uid
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      // Create with identity integrity and schema validation
+      allow create: if isSignedIn() && isValidId(conversationId) &&
+                       incoming().userId == request.auth.uid &&
+                       isValidConversation(incoming());
+      // Update: userId is immutable, schema validated
+      allow update: if isSignedIn() && isValidId(conversationId) &&
+                       existing().userId == request.auth.uid &&
+                       incoming().userId == existing().userId &&
+                       isValidConversation(incoming());
+      // Delete: only owner can delete their conversations
+      allow delete: if isSignedIn() && isValidId(conversationId) &&
+                       existing().userId == request.auth.uid;
+    }
+  }
+}

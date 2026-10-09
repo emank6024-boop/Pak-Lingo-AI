@@ -1,0 +1,840 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  ======================================================================
+  GLOBAL THEME DEFINITIONS — TWO-COLOR CONTRAST DESIGN SYSTEM
+  ======================================================================
+  Semantic Tokens:
+  --background
+  --surface
+  --surface-secondary
+  --text-primary
+  --text-secondary
+  --text-muted
+  --border
+  --accent
+  --accent-hover
+  --button-primary-bg
+  --button-primary-text
+  --button-secondary-bg
+  --button-secondary-text
+  --input-bg
+  --input-text
+  --input-placeholder
+  --focus-ring
+  --success
+  --warning
+  --error
+*/
+
+/* Default :root (Modern Pakistani AI Super-App: Premier Emerald SaaS + Clean Slate) */
+:root {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+  --surface-hover: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --accent: #059669; /* refined Pakistani emerald */
+  --accent-hover: #047857;
+  --accent-foreground: #ffffff;
+  --accent-subtle: #ecfdf5;
+  --accent-border: #a7f3d0;
+  --button-background: #059669;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #059669;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #0f172a;
+  --input-background: #ffffff;
+  --input-foreground: #0f172a;
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
+  --input-placeholder: #94a3b8;
+  --focus-ring: #10b981;
+  --success: #10b981;
+  --warning: #d97706;
+  --error: #ef4444;
+  --header-bg: #09131e;
+  --header-border: #132438;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #0f172a;
+
+  /* Legacy aliases for backward compatibility */
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f8fafc;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 0. FLAGSHIP THEME: Modern Pakistani Emerald SaaS */
+html[data-theme="emerald"] {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+  --surface-hover: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-foreground: #ffffff;
+  --accent-subtle: #ecfdf5;
+  --accent-border: #a7f3d0;
+  --button-background: #059669;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #059669;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #0f172a;
+  --input-background: #ffffff;
+  --input-foreground: #0f172a;
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
+  --input-placeholder: #94a3b8;
+  --focus-ring: #10b981;
+  --success: #10b981;
+  --warning: #d97706;
+  --error: #ef4444;
+  --header-bg: #09131e;
+  --header-border: #132438;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #0f172a;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f8fafc;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 0B. NAVY GOLD: Deep Navy + Warm Pakistani Gold */
+html[data-theme="navy-gold"] {
+  --background: #f8f9fa;
+  --surface: #ffffff;
+  --surface-secondary: #f1f3f7;
+  --surface-hover: #e8ebf1;
+  --text-primary: #0a1128;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --accent: #d97706;
+  --accent-hover: #b45309;
+  --accent-foreground: #ffffff;
+  --button-background: #0a1128;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #0a1128;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #0a1128;
+  --input-background: #ffffff;
+  --input-foreground: #0a1128;
+  --input-bg: #ffffff;
+  --input-text: #0a1128;
+  --input-placeholder: #64748b;
+  --focus-ring: #d97706;
+  --success: #10b981;
+  --warning: #d97706;
+  --error: #ef4444;
+  --header-bg: #0a1128;
+  --header-border: #18284f;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #0a1128;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f8f9fa;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 1. DARK THEME: Deep Navy + Crisp White */
+html[data-theme="dark"] {
+  --background: #070c1e;
+  --surface: #0e1733;
+  --surface-secondary: #14224b;
+  --surface-hover: #1c2e63;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #1e3164;
+  --border-subtle: #162449;
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-foreground: #ffffff;
+  --button-background: #10b981;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #10b981;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #14224b;
+  --button-secondary-text: #ffffff;
+  --input-background: #0a1229;
+  --input-foreground: #ffffff;
+  --input-bg: #0a1229;
+  --input-text: #ffffff;
+  --input-placeholder: #94a3b8;
+  --focus-ring: #10b981;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --header-bg: #070c1e;
+  --header-border: #1e3164;
+  --header-text: #ffffff;
+  --dropdown-bg: #0e1733;
+  --dropdown-text: #ffffff;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #0a1229;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: dark;
+}
+
+/* 2. LIGHT / WHITE THEME: Clean Crisp Slate + Deep Navy */
+html[data-theme="light"] {
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+  --surface-hover: #e2e8f0;
+  --text-primary: #0a1128;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
+  --border: #cbd5e1;
+  --border-subtle: #e2e8f0;
+  --accent: #0a1128;
+  --accent-hover: #1e293b;
+  --accent-foreground: #ffffff;
+  --button-background: #0a1128;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #0a1128;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #f1f5f9;
+  --button-secondary-text: #0a1128;
+  --input-background: #ffffff;
+  --input-foreground: #0a1128;
+  --input-bg: #ffffff;
+  --input-text: #0a1128;
+  --input-placeholder: #64748b;
+  --focus-ring: #0a1128;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --header-bg: #0a1128;
+  --header-border: #18284f;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #0a1128;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f8fafc;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 3. PINK THEME: Soft Rose + Deep Plum/Navy */
+html[data-theme="pink"] {
+  --background: #fff1f4;
+  --surface: #ffffff;
+  --surface-secondary: #ffe4e8;
+  --surface-hover: #fed7df;
+  --text-primary: #1c0710;
+  --text-secondary: #3f1122;
+  --text-muted: #5b2638;
+  --border: #fecdd3;
+  --border-subtle: #ffe4e8;
+  --accent: #e11d48;
+  --accent-hover: #be123c;
+  --accent-foreground: #ffffff;
+  --button-background: #e11d48;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #e11d48;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #be123c;
+  --input-background: #ffffff;
+  --input-foreground: #1c0710;
+  --input-bg: #ffffff;
+  --input-text: #1c0710;
+  --input-placeholder: #5b2638;
+  --focus-ring: #e11d48;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --header-bg: #1c0710;
+  --header-border: #3f1122;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #1c0710;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #fff1f4;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 4. YELLOW THEME: Warm Cream + Dark Bronze/Charcoal */
+html[data-theme="yellow"] {
+  --background: #fefce8;
+  --surface: #ffffff;
+  --surface-secondary: #fef3c7;
+  --surface-hover: #fde68a;
+  --text-primary: #1c1503;
+  --text-secondary: #29210c;
+  --text-muted: #574822;
+  --border: #fcd34d;
+  --border-subtle: #fef08a;
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-foreground: #ffffff;
+  --button-background: #b45309;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #b45309;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #78350f;
+  --input-background: #ffffff;
+  --input-foreground: #1c1503;
+  --input-bg: #ffffff;
+  --input-text: #1c1503;
+  --input-placeholder: #574822;
+  --focus-ring: #b45309;
+  --success: #10b981;
+  --warning: #b45309;
+  --error: #ef4444;
+  --header-bg: #1c1503;
+  --header-border: #3a2e0a;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #1c1503;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #fefce8;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 5. BLUE THEME: Soft Ice Blue + Deep Navy */
+html[data-theme="blue"] {
+  --background: #f0f7ff;
+  --surface: #ffffff;
+  --surface-secondary: #e0f2fe;
+  --surface-hover: #bae6fd;
+  --text-primary: #061128;
+  --text-secondary: #1e293b;
+  --text-muted: #334155;
+  --border: #bfdbfe;
+  --border-subtle: #dbeafe;
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-foreground: #ffffff;
+  --button-background: #1d4ed8;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #1d4ed8;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #1d4ed8;
+  --input-background: #ffffff;
+  --input-foreground: #061128;
+  --input-bg: #ffffff;
+  --input-text: #061128;
+  --input-placeholder: #475569;
+  --focus-ring: #1d4ed8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --header-bg: #061128;
+  --header-border: #18284f;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #061128;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f0f7ff;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 6. PURPLE THEME: Soft Lavender + Deep Violet/Navy */
+html[data-theme="purple"] {
+  --background: #f8f5ff;
+  --surface: #ffffff;
+  --surface-secondary: #f3e8ff;
+  --surface-hover: #e9d5ff;
+  --text-primary: #150d2a;
+  --text-secondary: #2e1065;
+  --text-muted: #581c87;
+  --border: #e9d5ff;
+  --border-subtle: #f3e8ff;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-foreground: #ffffff;
+  --button-background: #7c3aed;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #7c3aed;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #5b21b6;
+  --input-background: #ffffff;
+  --input-foreground: #150d2a;
+  --input-bg: #ffffff;
+  --input-text: #150d2a;
+  --input-placeholder: #581c87;
+  --focus-ring: #7c3aed;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --header-bg: #150d2a;
+  --header-border: #2e1065;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #150d2a;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f8f5ff;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/* 7. GREY THEME: Executive Slate + Slate Charcoal */
+html[data-theme="grey"] {
+  --background: #f1f5f9;
+  --surface: #ffffff;
+  --surface-secondary: #e2e8f0;
+  --surface-hover: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  --border: #cbd5e1;
+  --border-subtle: #e2e8f0;
+  --accent: #334155;
+  --accent-hover: #1e293b;
+  --accent-foreground: #ffffff;
+  --button-background: #0f172a;
+  --button-foreground: #ffffff;
+  --button-primary-bg: #0f172a;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-text: #0f172a;
+  --input-background: #ffffff;
+  --input-foreground: #0f172a;
+  --input-bg: #ffffff;
+  --input-text: #0f172a;
+  --input-placeholder: #475569;
+  --focus-ring: #334155;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --header-bg: #0f172a;
+  --header-border: #1e293b;
+  --header-text: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #0f172a;
+
+  --app-bg: var(--background);
+  --surface-bg: var(--surface);
+  --surface-elevated: var(--surface-secondary);
+  --surface-subtle: #f1f5f9;
+  --border-strong: var(--border);
+  --accent-color: var(--accent);
+  color-scheme: light;
+}
+
+/*
+  ======================================================================
+  UNIVERSAL REVOLUTIONARY OVERRIDES: ALL EXISTING HARDCODED COLORS
+  ARE MAPPED TO DYNAMIC SEMANTIC TOKENS
+  ======================================================================
+*/
+
+/* 1. App background container */
+html[data-theme] body,
+html[data-theme] #root,
+html[data-theme] .bg-\[\#0d0f12\] {
+  background-color: var(--background) !important;
+  color: var(--text-primary) !important;
+}
+
+/* 2. Main Surface / Card Backgrounds */
+html[data-theme] .bg-\[\#14171c\],
+html[data-theme] .bg-\[\#0c1633\],
+html[data-theme] .bg-\[\#111e3f\],
+html[data-theme] .bg-\[\#0a1128\]:not(#main-navbar):not(.keep-navy) {
+  background-color: var(--surface) !important;
+  color: var(--text-primary);
+}
+
+/* 3. Secondary / Elevated / Toolbar / Input Area Backgrounds */
+html[data-theme] .bg-\[\#181c22\],
+html[data-theme] .bg-\[\#101216\],
+html[data-theme] .bg-\[\#14234b\],
+html[data-theme] .bg-\[\#101b3b\],
+html[data-theme] .bg-\[\#070e22\]:not(#main-navbar):not(.keep-navy),
+html[data-theme] .bg-\[\#081026\]:not(#main-navbar):not(.keep-navy),
+html[data-theme] .bg-\[\#0f1b3b\],
+html[data-theme] .bg-\[\#121f42\],
+html[data-theme] .bg-\[\#18284f\]:not(#main-navbar *):not(.keep-navy),
+html[data-theme] .bg-\[\#182a57\]:not(#main-navbar *) {
+  background-color: var(--surface-secondary) !important;
+  color: var(--text-primary);
+}
+
+/* 4. Hover states on surfaces and buttons */
+html[data-theme] .hover\:bg-\[\#1a2d5a\]:hover,
+html[data-theme] .hover\:bg-\[\#101b3b\]:hover,
+html[data-theme] .hover\:bg-\[\#181c22\]:hover,
+html[data-theme] .hover\:bg-\[\#14171c\]:hover,
+html[data-theme] .hover\:bg-neutral-800:hover,
+html[data-theme] .hover\:bg-neutral-700:hover {
+  background-color: var(--surface-hover) !important;
+}
+
+/* 5. Borders across all components */
+html[data-theme] .border-neutral-800,
+html[data-theme] .border-neutral-800\/80,
+html[data-theme] .border-neutral-800\/60,
+html[data-theme] .border-neutral-800\/40,
+html[data-theme] .border-neutral-700,
+html[data-theme] .border-neutral-700\/80,
+html[data-theme] .border-neutral-700\/60,
+html[data-theme] .border-\[\#18284f\]:not(#main-navbar),
+html[data-theme] .border-\[\#203467\],
+html[data-theme] .border-\[\#233b7a\],
+html[data-theme] .border-\[\#1f3366\],
+html[data-theme] .border-\[\#273d70\],
+html[data-theme] .border-\[\#1b2b52\]:not(#main-navbar) {
+  border-color: var(--border) !important;
+}
+
+/* 6. Dark Mode: Prevent dark-on-dark invisible text */
+html[data-theme="dark"] .text-slate-900,
+html[data-theme="dark"] .text-slate-800,
+html[data-theme="dark"] .text-neutral-900,
+html[data-theme="dark"] .text-neutral-800,
+html[data-theme="dark"] .text-gray-900,
+html[data-theme="dark"] .text-gray-800,
+html[data-theme="dark"] .text-black {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .text-slate-700,
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-neutral-700,
+html[data-theme="dark"] .text-neutral-600,
+html[data-theme="dark"] .text-gray-700,
+html[data-theme="dark"] .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .text-slate-500,
+html[data-theme="dark"] .text-slate-400,
+html[data-theme="dark"] .text-neutral-500,
+html[data-theme="dark"] .text-neutral-400,
+html[data-theme="dark"] .text-gray-500,
+html[data-theme="dark"] .text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+/* 7. Dark Mode: Neutral/Slate/White light cards transform to dark surfaces */
+html[data-theme="dark"] .bg-white:not(.keep-white):not([class*="rounded-full w-4"]):not([class*="rounded-full w-3"]):not(.theme-swatch),
+html[data-theme="dark"] .bg-slate-50,
+html[data-theme="dark"] .bg-slate-100,
+html[data-theme="dark"] .bg-neutral-50,
+html[data-theme="dark"] .bg-neutral-100,
+html[data-theme="dark"] .bg-gray-50,
+html[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--surface) !important;
+  color: var(--text-primary);
+}
+
+html[data-theme="dark"] .bg-slate-200,
+html[data-theme="dark"] .bg-neutral-200,
+html[data-theme="dark"] .bg-gray-200 {
+  background-color: var(--surface-secondary) !important;
+  color: var(--text-primary);
+}
+
+/* 8. Light & Color Themes: Headings & High-contrast Text */
+html[data-theme]:not([data-theme="dark"]) .text-white:not(.keep-white):not(#main-navbar *):not(.btn-primary *):not([class*="bg-[var(--accent)]"] *):not([class*="bg-[var(--button-primary-bg)]"] *):not([class*="bg-emerald"] *):not([class*="bg-rose"] *):not([class*="bg-red"] *):not([class*="bg-amber"] *):not([class*="bg-blue"] *):not([class*="bg-violet"] *):not([class*="bg-purple"] *):not([class*="bg-sky"] *):not([class*="bg-teal"] *):not(button[type="submit"] *):not([class*="rounded-full bg-[var(--accent)]"] *),
+html[data-theme]:not([data-theme="dark"]) .text-neutral-100:not(.keep-white):not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-slate-100:not(.keep-white):not(#main-navbar *) {
+  color: var(--text-primary) !important;
+}
+
+/* 9. Light & Color Themes: Secondary Text */
+html[data-theme]:not([data-theme="dark"]) .text-neutral-200:not(.keep-white):not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-neutral-300:not(.keep-white):not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-slate-200:not(.keep-white):not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-slate-300:not(.keep-white):not(#main-navbar *) {
+  color: var(--text-secondary) !important;
+}
+
+/* 10. Light & Color Themes: Muted / Subtle Text */
+html[data-theme]:not([data-theme="dark"]) .text-neutral-400:not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-neutral-500:not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-slate-400:not(#main-navbar *),
+html[data-theme]:not([data-theme="dark"]) .text-slate-500:not(#main-navbar *) {
+  color: var(--text-muted) !important;
+}
+
+/* 11. Universal Form Inputs, Selects, and Textareas */
+html[data-theme] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not(.keep-custom),
+html[data-theme] select:not(.keep-custom),
+html[data-theme] textarea:not(.keep-custom) {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme] input::placeholder,
+html[data-theme] textarea::placeholder {
+  color: var(--input-placeholder) !important;
+  opacity: 1 !important;
+}
+
+html[data-theme] select option {
+  background-color: var(--dropdown-bg) !important;
+  color: var(--dropdown-text) !important;
+}
+
+html[data-theme] input:focus,
+html[data-theme] select:focus,
+html[data-theme] textarea:focus {
+  border-color: var(--focus-ring) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus-ring) 25%, transparent) !important;
+  outline: none;
+}
+
+/* 11b. Universal Focus Rings for Accessible Buttons & Links */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* 12. Checkboxes & Radio Buttons */
+html[data-theme] input[type="checkbox"],
+html[data-theme] input[type="radio"] {
+  accent-color: var(--accent) !important;
+  border-color: var(--border) !important;
+  cursor: pointer;
+}
+
+/* 13. Disabled & Loading states */
+html[data-theme] button:disabled,
+html[data-theme] input:disabled,
+html[data-theme] select:disabled,
+html[data-theme] textarea:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+/* 14. Suggested prompts & quick chips */
+html[data-theme]:not([data-theme="dark"]) .suggested-pill,
+html[data-theme]:not([data-theme="dark"]) .navy-hero .px-3\.5 {
+  background-color: var(--surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+/* 15. Main Navigation Bar: Consistent Two-Color Navy Bar Across All Themes */
+html[data-theme] header#main-navbar {
+  background-color: var(--header-bg) !important;
+  border-color: var(--header-border) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme] header#main-navbar .text-white,
+html[data-theme] header#main-navbar .text-neutral-100 {
+  color: #ffffff !important;
+}
+
+html[data-theme] header#main-navbar .text-neutral-300,
+html[data-theme] header#main-navbar .text-neutral-400,
+html[data-theme] header#main-navbar .text-slate-300,
+html[data-theme] header#main-navbar .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+/* 16. Primary and Secondary Action Buttons */
+.btn-primary,
+button.btn-primary {
+  background-color: var(--button-primary-bg) !important;
+  color: var(--button-primary-text) !important;
+}
+
+.btn-secondary,
+button.btn-secondary {
+  background-color: var(--button-secondary-bg) !important;
+  color: var(--button-secondary-text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* 17. Font Size Scaling (Small / Medium / Large) */
+html[data-font-size="small"] {
+  font-size: 14px;
+}
+html[data-font-size="medium"] {
+  font-size: 16px;
+}
+html[data-font-size="large"] {
+  font-size: 18px;
+}
+
+/* 14. Theme Transition Smoothing */
+html[data-theme] {
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* 15. Custom Scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}
+
+/* 16. Nastaliq Font Support */
+.font-urdu {
+  font-family: 'Noto Nastaliq Urdu', 'Plus Jakarta Sans', system-ui, sans-serif;
+  line-height: 1.8;
+}
+
+/* 17. Shimmer Animation for Skeletons & Placeholders */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--surface-secondary) 25%,
+    var(--surface-hover) 50%,
+    var(--surface-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.75s ease-in-out infinite;
+}
+
+/* 18. Micro-interactions and Elevated Card Utilities */
+.pak-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pak-card-interactive {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pak-card-interactive:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1.5px);
+}
+
+.pak-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.pak-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.12);
+}
+
+.pak-btn-primary:active {
+  transform: translateY(0);
+  filter: brightness(0.96);
+}
+
+.pak-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pak-btn-secondary:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--border-strong, var(--border));
+}
+
+.pak-btn-secondary:active {
+  transform: translateY(0);
+}
+

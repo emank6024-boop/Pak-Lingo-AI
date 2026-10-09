@@ -1,0 +1,6 @@
+{
+  "name": "PakLingo AI",
+  "description": "Empowering Every Pakistani Through AI, Language, and Accessibility. Modern multilingual AI super-app for public services, healthcare, agriculture, legal guidance, and translation.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
